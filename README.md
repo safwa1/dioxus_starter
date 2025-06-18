@@ -4,6 +4,14 @@ A professional, production-ready starter kit (template) for building desktop app
 
 ---
 
+## 📺 Demo Video
+
+[![Dioxus Desktop Starter Kit Demo](https://img.youtube.com/vi/y5Qv9c9FRzc/0.jpg)](https://www.youtube.com/watch?v=y5Qv9c9FRzc)
+
+Watch the demo: [https://www.youtube.com/watch?v=y5Qv9c9FRzc](https://www.youtube.com/watch?v=y5Qv9c9FRzc)
+
+---
+
 ## ✨ Features
 
 - ⚡ **Dioxus Desktop**: Fast, reactive UI in Rust
