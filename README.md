@@ -26,7 +26,7 @@ A professional, production-ready starter kit (template) for building desktop app
 
 1. **Clone the repository:**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/safwa1/dioxus_starter.git
    cd dioxus_starter
    ```
 2. **Install Rust dependencies:**
