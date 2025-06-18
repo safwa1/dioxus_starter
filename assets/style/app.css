@@ -1,0 +1,126 @@
+:root {
+  /* Light theme defaults */
+  --transition-time: 0.4s;
+  --background: #F2F4F7;
+  --foreground: #505B6C;
+  --card: #FCFCFD;
+  --card-border: #F4F6F8;
+  --window-border: #EAECF0;
+  --window-background: #ffffff;
+
+  --button-border: #d1d5db; /* Soft gray border */
+  --button-background: #f9fafb; /* Very light gray with transparency */
+  --button-background-hover: #f3f4f6; /* Slightly darker on hover */
+  --button-text: #374151; /* Dark gray for good contrast */
+  --button-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+}
+
+.dark {
+  --background: #13131a;
+  --foreground: oklch(0.985 0 0);
+  --card: #1B1D26;
+  --card-border: #22232F;
+  --window-border: #2a2c3a;
+  --window-background: #191a23;
+
+  --button-border:#2a2c3a;
+  --button-background: #222531ad;
+  --button-background-hove: #222531;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  user-select: none;
+}
+
+body {
+  box-sizing: border-box;
+  background-color: var(
+    --background
+  ) !important; /* Use your theme background */
+  color: var(--foreground);
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  transition: 
+    background-color var(--transition-time),
+    color var(--transition-time),
+    border-color var(--transition-time);;
+  height: 100vh;
+  line-height: 1.5;
+}
+
+/* Smooth transitions for themeable elements */
+.themeable {
+  transition: 
+    background-color var(--transition-time),
+    color var(--transition-time),
+    border-color var(--transition-time);
+}
+
+#main {
+	min-height: 100vh;
+}
+
+
+
+h1, h2, h3, h4, h5 {
+	line-height: 1.2;
+	overflow-wrap: break-word;
+}
+
+h1 {
+	font-size: 1.4rem;
+	/* margin-bottom: 24px; */
+}
+
+p {
+	overflow-wrap: break-word;
+	hyphens: auto;
+}
+
+fieldset {
+	padding: 8px;
+}
+
+input, button, textarea, select {
+	font: inherit;
+}
+
+progress[value] {
+	-webkit-appearance: none;
+	appearance: none;
+	border: none;
+	width: 100%;
+	height: 20px;
+}
+
+/* For WebKit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px; /* for horizontal scrollbars */
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+

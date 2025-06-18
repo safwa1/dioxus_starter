@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .button {
+        @apply mt-3 text-sm px-3 h-10 inline-flex items-center justify-center rounded-lg border cursor-pointer border-[var(--button-border)] bg-[var(--button-background)] hover:bg-[var(--button-background-hove)];
+    }
+}

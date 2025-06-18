@@ -1,0 +1,44 @@
+[application]
+
+[web.app]
+
+# HTML title tag content
+title = "yemen-server-licensor"
+
+# include `assets` in web platform
+[web.resource]
+
+# Additional CSS style files
+style = ["assets/tailwind.css"]
+
+# Additional JavaScript files
+script = []
+
+[web.resource.dev]
+
+# Javascript code file
+# serve: [dev-server] only
+script = []
+
+asset_dir = "assets"
+
+[bundle]
+copyright = "Copyright 2025 Safwan.pro"
+icon = [ # Files copied from a Tauri project
+  "icons/32x32.png",
+  "icons/128x128.png",
+  "icons/128x128@2x.png",
+  "icons/icon.icns",
+  "icons/icon.ico"
+]
+identifier = "pro.safwan.yemen_server"
+publisher = "Safwan Abdulghani"
+
+[bundle.windows]
+tsp = false
+icon_path = "assets/favicon.ico"
+allow_downgrades = true
+binary_name = "YS-Licensor" 
+
+[bundle.windows.webview_install_mode.EmbedBootstrapper]
+silent = true

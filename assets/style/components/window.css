@@ -1,0 +1,14 @@
+.window-container {
+  background-color: var(--window-background);
+  margin: 0.7rem;
+  margin-right: 0.76rem;
+  margin-top: 2px;
+  box-sizing: border-box;
+  border: 1px solid var(--window-border);
+  border-radius: 7px;
+  height: calc(100vh - 55px);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
