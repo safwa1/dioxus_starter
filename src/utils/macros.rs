@@ -23,7 +23,7 @@ macro_rules! cn {
                     result.push(' ');
                 }
                 first = false;
-                println!("{first}");
+                //println!("{first}");
                 result.push_str($class);
             }
         )*

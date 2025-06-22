@@ -1,9 +1,9 @@
 use dioxus::{hooks::use_context, signals::Signal};
 use dioxus_desktop::use_window;
-
+use serde::{Deserialize, Serialize};
 use crate::{localization::Language, models::Theme};
 
-#[derive(Clone)]
+#[derive(Clone, Serialize, Deserialize)]
 pub struct AppState {
     language: Language,
     theme: Theme,
@@ -27,6 +27,7 @@ impl AppState {
 
     pub fn set_language(&mut self, language: Language) {
         self.language = language;
+        self.save();
     }
 
     pub fn toggle_language(&mut self) {
@@ -34,10 +35,12 @@ impl AppState {
             Language::Arabic => Language::English,
             Language::English => Language::Arabic
         };
+        self.save();
     }
 
     pub fn set_theme(&mut self, theme: Theme) {
         self.theme = theme;
+        self.save();
     }
 
     pub fn is_dark(&self) -> bool {
@@ -49,12 +52,14 @@ impl AppState {
             Theme::Light => Theme::Dark,
             Theme::Dark => Theme::Light,
         };
-        self.apply_theme();
+        self.apply_theme(self.theme);
+        println!("theme changed to {:?}", self.theme);
+        self.save();
     }
 
-    fn apply_theme(&self) {
+    pub fn apply_theme(&self, theme: Theme) {
         let window = use_window();
-        match self.theme {
+        match theme {
             Theme::Dark => window.webview.evaluate_script(
                 r#"document.documentElement.classList.add('dark')"#
             ),
@@ -62,6 +67,19 @@ impl AppState {
                 r#"document.documentElement.classList.remove('dark')"#
             ),
         }.unwrap();
+    }
+
+    pub fn load() -> AppState {
+        // confy will automatically create the directory and file if they don't exist
+        // and return the default value if the file is empty or corrupted.
+        confy::load("dioxus_starter", None).unwrap_or_default()
+    }
+
+    pub fn save(&self) {
+        // confy will save the state to the appropriate config directory
+        if let Err(e) = confy::store("dioxus_starter", None, self) {
+            eprintln!("Failed to save app state: {:?}", e);
+        }
     }
 }
 

@@ -66,7 +66,6 @@ body {
 }
 
 
-
 h1, h2, h3, h4, h5 {
 	line-height: 1.2;
 	overflow-wrap: break-word;
@@ -124,3 +123,36 @@ progress[value] {
 }
 
 
+/* Ensure the main app container positions children absolutely */
+.app-container-with-resize-borders {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevent content from spilling into borders */
+}
+
+/* Common style for all resize handles */
+.resize-handle {
+    position: absolute;
+    z-index: 1000; /* Make sure handles are on top */
+}
+
+/* Individual handle positioning and sizing */
+.resize-n { top: 0; left: 5px; right: 5px; height: 5px; cursor: ns-resize; }
+.resize-ne { top: 0; right: 0; width: 5px; height: 5px; cursor: nesw-resize; }
+.resize-e { top: 5px; right: 0; bottom: 5px; width: 5px; cursor: ew-resize; }
+.resize-se { bottom: 0; right: 0; width: 5px; height: 5px; cursor: nwse-resize; }
+.resize-s { bottom: 0; left: 5px; right: 5px; height: 5px; cursor: ns-resize; }
+.resize-sw { bottom: 0; left: 0; width: 5px; height: 5px; cursor: nesw-resize; }
+.resize-w { top: 5px; left: 0; bottom: 5px; width: 5px; cursor: ew-resize; }
+.resize-nw { top: 0; left: 0; width: 5px; height: 5px; cursor: nwse-resize; }
+
+/* The actual content should be positioned inside and allow space for borders */
+.actual-app-content {
+    position: absolute;
+    top: 5px; /* Adjust based on your border size */
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    overflow: auto; /* If content can scroll */
+}

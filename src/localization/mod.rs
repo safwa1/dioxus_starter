@@ -3,10 +3,10 @@ mod ar;
 
 use dioxus::prelude::*;
 use thiserror::Error;
-
+use serde::{Deserialize, Serialize};
 use crate::state::app_state::AppState;
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Language {
     English,
     Arabic,
