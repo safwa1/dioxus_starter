@@ -44,7 +44,7 @@ pub fn App() -> Element {
         document::Stylesheet { href: asset!("/assets/style/components/window.css")}
         document::Stylesheet { href: asset!("/assets/tailwind.css")}
         
-        TitleBar { title: t.text_or("app_title", "Dioxus Starter Kit!") }
+        TitleBar { title: t.text_or("app_title", "Dioxus Starter Kit") }
         
         if is_loading() {
             Loader { }
