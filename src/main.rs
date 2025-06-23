@@ -35,7 +35,7 @@ fn main() {
         .with_window(window);
 
     LaunchBuilder::new()
-        .with_cfg(config) // Provide the initial AppState as a Signal
+        .with_cfg(config)
         .launch(App);
 }
 
