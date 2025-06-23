@@ -1,0 +1,5 @@
+v0.2
+    Fix title bar direction issue on theme switch, persist app state, and enhance UI design
+    - Resolved layout direction bug in the title bar when toggling between light/dark themes
+    - Implemented persistent app state saving and loading (previously, state was lost on close)
+    - Made several UI design improvements for a more polished user experience
