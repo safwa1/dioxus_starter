@@ -1,5 +1,5 @@
 use dioxus::prelude::*;
-
+use dioxus_desktop::use_window;
 use crate::{
     app::Route,
     localization::use_translator,
@@ -9,9 +9,10 @@ use crate::{
 #[component]
 pub fn Home() -> Element {
     let t = use_translator();
-    let mut state = use_app_state();
-
+    let mut app_state = use_app_state();
     let mut show_content = use_signal(|| false);
+    let mut change_decoration_text = use_signal(|| "Restore Default Window Decoration");
+    let window = use_window();
 
     use_effect(move || {
         spawn(async move {
@@ -47,19 +48,28 @@ pub fn Home() -> Element {
             button {
                 class: "button themeable",
                 onclick: move |_| {
-                    state.write().toggle_language();
+                    app_state.write().toggle_language();
                 },
                 {t.text("switch_language")}
              }
 
-
-             button {
+            button {
                 class: "button themeable",
                 onclick: move |_| {
-                    state.write().toggle_theme();
+                    app_state.write().toggle_theme();
                 },
                 {t.text("switch_theme")}
-             }
+            }
+
+            button {
+                class: "button themeable",
+                onclick: move |_| {
+                    window.set_decorations(!window.is_decorated());
+                    change_decoration_text.set(if(window.is_decorated()) { "Use Custom Window Decoration" } else { "Restore Default Window Decoration" });
+                },
+                "{change_decoration_text}"
+            }
+
          }
 
     }

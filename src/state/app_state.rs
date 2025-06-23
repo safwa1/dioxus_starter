@@ -30,11 +30,11 @@ impl AppState {
     }
 
     pub fn toggle_language(&mut self) {
-        self.language = match self.language {
+        let language = match self.language {
             Language::Arabic => Language::English,
             Language::English => Language::Arabic
         };
-        self.save();
+        self.set_language(language);
     }
 
     pub fn set_theme(&mut self, theme: Theme) {
