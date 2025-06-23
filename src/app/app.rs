@@ -4,6 +4,7 @@ use crate::app::window_content::WindowContent;
 use crate::app::Route;
 use crate::localization::use_translator;
 use crate::state::app_state::{use_app_state, AppState};
+use crate::utils::appname_utils::AppName;
 use dioxus::prelude::*;
 use dioxus_desktop::tao::platform::windows::WindowExtWindows;
 use dioxus_desktop::wry::dpi::PhysicalPosition;
@@ -39,12 +40,13 @@ pub fn App() -> Element {
         center_window(&desktop);
     });
 
+
     rsx! {
         document::Stylesheet { href: asset!("/assets/style/app.css")}
         document::Stylesheet { href: asset!("/assets/style/components/window.css")}
         document::Stylesheet { href: asset!("/assets/tailwind.css")}
         
-        TitleBar { title: t.text_or("app_title", "Dioxus Starter Kit") }
+        TitleBar { title: t.text_or("app_title", AppName::get_formatted_value()) }
         
         if is_loading() {
             Loader { }

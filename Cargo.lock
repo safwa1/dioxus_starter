@@ -1186,6 +1186,7 @@ dependencies = [
  "confy",
  "dioxus",
  "dioxus-desktop",
+ "lazy_static",
  "phf 0.12.1",
  "serde",
  "thiserror 2.0.12",

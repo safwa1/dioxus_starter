@@ -12,7 +12,6 @@ pub struct AppState {
 impl Default for AppState {
     fn default() -> Self {
         Self { language: Language::default(), theme: Theme::default() }
-        
     }
 }
 
@@ -72,12 +71,14 @@ impl AppState {
     pub fn load() -> AppState {
         // confy will automatically create the directory and file if they don't exist
         // and return the default value if the file is empty or corrupted.
-        confy::load("dioxus_starter", None).unwrap_or_default()
+        const APP_NAME: &str = env!("CARGO_PKG_NAME");
+        confy::load(APP_NAME, None).unwrap_or_default()
     }
 
     pub fn save(&self) {
         // confy will save the state to the appropriate config directory
-        if let Err(e) = confy::store("dioxus_starter", None, self) {
+        const APP_NAME: &str = env!("CARGO_PKG_NAME");
+        if let Err(e) = confy::store(APP_NAME, None, self) {
             eprintln!("Failed to save app state: {:?}", e);
         }
     }

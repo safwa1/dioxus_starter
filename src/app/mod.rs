@@ -7,4 +7,4 @@ mod app;
 pub use views::*;
 pub use components::*;
 pub use router::*;
-pub use app::*;
+pub use app::App;
