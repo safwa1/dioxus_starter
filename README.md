@@ -4,7 +4,7 @@ A professional, production-ready starter kit (template) for building desktop app
 
 ## 🚀 How to Use
 
-Click the green **"Use this template"** button on GitHub to create your own project based on this starter.
+Click the green **"Use this template"** button on top right corner to create your own project based on this starter.
 
 ## 🛠 Rename the Project
 
