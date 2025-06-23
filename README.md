@@ -2,6 +2,19 @@
 
 A professional, production-ready starter kit (template) for building desktop applications with [Dioxus](https://dioxuslabs.com/) (Rust). This template features a custom window, multi-language localization, dark/light theme support, and modern styling with [Tailwind CSS](https://tailwindcss.com/).
 
+## 🚀 How to Use
+
+Click the green **"Use this template"** button on GitHub to create your own project based on this starter.
+
+## 🛠 Rename the Project
+
+After using this template, update the project name in `Cargo.toml`:
+
+```toml
+[package]
+name = "your-app-name"
+```
+
 ---
 
 ## 📺 Demo Video
