@@ -2,10 +2,10 @@
 #![allow(dependency_on_unit_never_type_fallback)]
 
 use dioxus::prelude::*;
-use dioxus_desktop::{tao::{event_loop::EventLoop, platform::windows::WindowBuilderExtWindows}};
+use dioxus_desktop::tao::{event_loop::EventLoop, platform::windows::WindowBuilderExtWindows};
 #[cfg(feature = "desktop")]
 use dioxus_desktop::{Config, WindowBuilder};
-use dioxus_starter::app::App;
+use dioxus_starter::{app::App, utils::appname_utils::AppName};
 
 const DEFAULT_WINDOW_WIDTH: u32 = 620;
 const DEFAULT_WINDOW_HEIGHT: u32 = 650;
@@ -13,11 +13,10 @@ const GOLDEN_RATIO: f64 = 1.6180339887;
 
 fn main() {
     let (window_width, window_height) =  calculate_initial_window_size();
-
     println!("width = {}, height = {}", window_width, window_height);
-    
+
     let window = WindowBuilder::new()
-        .with_title("Dioxus Starter")
+        .with_title(AppName::get_formatted_value())
         .with_inner_size(dioxus_desktop::LogicalSize::new(
             window_width,
             window_height,

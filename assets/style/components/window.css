@@ -1,12 +1,15 @@
 .window-container {
+  --height-offset: 55px;
+  --mt: 2px;
+  --mr: 0.76rem;
+  --mb: 0.7rem;
+  --ml: 0.7rem;
   background-color: var(--window-background);
-  margin: 0.7rem;
-  margin-right: 0.76rem;
-  margin-top: 2px;
+  margin: var(--mt) var(--mr) var(--mb) var(--ml);
   box-sizing: border-box;
   border: 1px solid var(--window-border);
   border-radius: 7px;
-  height: calc(100vh - 55px);
+  height: calc(100vh - var(--height-offset));
   padding: 20px;
   display: flex;
   flex-direction: column;

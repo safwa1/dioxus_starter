@@ -6,7 +6,6 @@ use crate::localization::use_translator;
 use crate::state::app_state::{use_app_state, AppState};
 use crate::utils::appname_utils::AppName;
 use dioxus::prelude::*;
-use dioxus_desktop::tao::platform::windows::WindowExtWindows;
 use dioxus_desktop::wry::dpi::PhysicalPosition;
 use dioxus_desktop::{use_window, DesktopContext, DesktopService};
 use tokio::time::sleep;
@@ -19,12 +18,10 @@ pub fn App() -> Element {
     use_context_provider(|| Signal::new(initial_app_state.clone()));
     let app_state = use_app_state();
     let desktop: Rc<DesktopService> = use_window();
-
-    desktop.set_undecorated_shadow(true);
-
     let t = use_translator();
-    
-    // State to manage loading
+
+    let decorated_state = desktop.is_decorated();
+
     let mut is_loading = use_signal(|| true);
 
     use_effect(move || {
@@ -32,12 +29,14 @@ pub fn App() -> Element {
         let current_theme = app_state().theme();
         app_state().apply_theme(current_theme);
 
+        if is_loading() {
+            center_window(&desktop);
+        }
+
         spawn(async move {
             sleep(std::time::Duration::from_secs(1)).await;
-            is_loading.set(false); // Set loading to false once everything is loaded
+            is_loading.set(false);
         });
-    
-        center_window(&desktop);
     });
 
 
@@ -45,11 +44,14 @@ pub fn App() -> Element {
         document::Stylesheet { href: asset!("/assets/style/app.css")}
         document::Stylesheet { href: asset!("/assets/style/components/window.css")}
         document::Stylesheet { href: asset!("/assets/tailwind.css")}
-        
-        TitleBar { title: t.text_or("app_title", AppName::get_formatted_value()) }
+
+        // use custom title-bar only when window not use default decoration
+        if !decorated_state {
+            TitleBar { title: t.text_or("app_title", AppName::get_formatted_value()) }
+        }
         
         if is_loading() {
-            Loader { }
+            Loader { decorated_state: decorated_state }
         } else {
             WindowContent {
                 content: rsx! { Router::<Route> {} }
@@ -59,10 +61,19 @@ pub fn App() -> Element {
 }
 
 #[component]
-fn Loader() -> Element {
+pub fn Loader(decorated_state: bool) -> Element {
+    let container_style = use_memo(move || {
+        if decorated_state {
+            "--height-offset: 20px; --mt: 10px; --mb: 10px; --mr: 10px; --ml: 10px"
+        } else {
+            "--height-offset: 55px"
+        }
+    });
+
     rsx! {
         div {
             class: "window-container themeable items-center justify-center",
+            style: "{container_style}",
             MaterialSpinner { width: "50px", height: "50px"}
         }
     }

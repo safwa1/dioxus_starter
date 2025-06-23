@@ -59,12 +59,14 @@ impl AppState {
     pub fn apply_theme(&self, theme: Theme) {
         let window = use_window();
         match theme {
-            Theme::Dark => window.webview.evaluate_script(
-                r#"document.documentElement.classList.add('dark')"#
-            ),
-            Theme::Light => window.webview.evaluate_script(
-                r#"document.documentElement.classList.remove('dark')"#
-            ),
+            Theme::Dark => {
+                window.set_theme(Some(dioxus_desktop::tao::window::Theme::Dark));
+                window.webview.evaluate_script(r#"document.documentElement.classList.add('dark')"#)
+            },
+            Theme::Light => {
+                window.set_theme(Some(dioxus_desktop::tao::window::Theme::Light));
+                window.webview.evaluate_script(r#"document.documentElement.classList.remove('dark')"#)
+            },
         }.unwrap();
     }
 
