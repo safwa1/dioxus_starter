@@ -47,8 +47,8 @@ Watch the demo: [https://www.youtube.com/watch?v=y5Qv9c9FRzc](https://www.youtub
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/safwa1/dioxus_starter.git
-   cd dioxus_starter
+   git clone https://github.com/safwa1/dioxus_starter.git <your-app-name>
+   cd <your-app-name>
    ```
 2. **Install Rust dependencies:**
    ```bash
