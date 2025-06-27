@@ -65,7 +65,7 @@ pub fn Home() -> Element {
                 class: "button themeable",
                 onclick: move |_| {
                     window.set_decorations(!window.is_decorated());
-                    change_decoration_text.set(if(window.is_decorated()) { "Use Custom Window Decoration" } else { "Restore Default Window Decoration" });
+                    change_decoration_text.set(if window.is_decorated() { "Use Custom Window Decoration" } else { "Restore Default Window Decoration" });
                 },
                 "{change_decoration_text}"
             }
