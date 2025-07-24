@@ -1,7 +1,7 @@
+use crate::{localization::Language, models::Theme};
 use dioxus::{hooks::use_context, signals::Signal};
 use dioxus_desktop::use_window;
 use serde::{Deserialize, Serialize};
-use crate::{localization::Language, models::Theme};
 
 #[derive(Clone, Serialize, Deserialize)]
 pub struct AppState {
@@ -11,7 +11,10 @@ pub struct AppState {
 
 impl Default for AppState {
     fn default() -> Self {
-        Self { language: Language::default(), theme: Theme::default() }
+        Self {
+            language: Language::default(),
+            theme: Theme::default(),
+        }
     }
 }
 
@@ -32,7 +35,7 @@ impl AppState {
     pub fn toggle_language(&mut self) {
         let language = match self.language {
             Language::Arabic => Language::English,
-            Language::English => Language::Arabic
+            Language::English => Language::Arabic,
         };
         self.set_language(language);
     }
@@ -61,13 +64,18 @@ impl AppState {
         match theme {
             Theme::Dark => {
                 window.set_theme(Some(dioxus_desktop::tao::window::Theme::Dark));
-                window.webview.evaluate_script(r#"document.documentElement.classList.add('dark')"#)
-            },
+                window
+                    .webview
+                    .evaluate_script(r#"document.documentElement.classList.add('dark')"#)
+            }
             Theme::Light => {
                 window.set_theme(Some(dioxus_desktop::tao::window::Theme::Light));
-                window.webview.evaluate_script(r#"document.documentElement.classList.remove('dark')"#)
-            },
-        }.unwrap();
+                window
+                    .webview
+                    .evaluate_script(r#"document.documentElement.classList.remove('dark')"#)
+            }
+        }
+        .unwrap();
     }
 
     pub fn load() -> AppState {
@@ -85,7 +93,6 @@ impl AppState {
         }
     }
 }
-
 
 pub fn use_app_state() -> Signal<AppState> {
     use_context::<Signal<AppState>>()

@@ -20,7 +20,7 @@ pub fn Home() -> Element {
             show_content.set(true);
         });
     });
-    
+
     let transition_classes = if *show_content.read() {
         // Final state: fully opaque, no translation
         "opacity-100 translate-y-0"

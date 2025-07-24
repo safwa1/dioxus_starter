@@ -12,7 +12,7 @@ const DEFAULT_WINDOW_HEIGHT: u32 = 650;
 const GOLDEN_RATIO: f64 = 1.6180339887;
 
 fn main() {
-    let (window_width, window_height) =  calculate_initial_window_size();
+    let (window_width, window_height) = calculate_initial_window_size();
     println!("width = {}, height = {}", window_width, window_height);
 
     let window = WindowBuilder::new()
@@ -34,9 +34,7 @@ fn main() {
         .with_disable_context_menu(!cfg!(debug_assertions))
         .with_window(window);
 
-    LaunchBuilder::new()
-        .with_cfg(config)
-        .launch(App);
+    LaunchBuilder::new().with_cfg(config).launch(App);
 }
 
 fn calculate_initial_window_size() -> (u32, u32) {
@@ -44,11 +42,20 @@ fn calculate_initial_window_size() -> (u32, u32) {
     let event_loop = EventLoop::new();
 
     // Get the primary monitor or the first available monitor
-    if let Some(monitor) = event_loop.primary_monitor().or_else(|| event_loop.available_monitors().next()) {
+    if let Some(monitor) = event_loop
+        .primary_monitor()
+        .or_else(|| event_loop.available_monitors().next())
+    {
         let monitor_size = monitor.size();
-        ((monitor_size.width / 3), ((monitor_size.height / 4) as f64 * GOLDEN_RATIO) as u32)
+        (
+            (monitor_size.width / 3),
+            ((monitor_size.height / 4) as f64 * GOLDEN_RATIO) as u32,
+        )
     } else {
-        println!("Could not determine monitor size, using default width = {}, height = {}", DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT);
+        println!(
+            "Could not determine monitor size, using default width = {}, height = {}",
+            DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT
+        );
         (DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT) // return default size
     }
 }

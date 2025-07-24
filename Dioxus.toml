@@ -1,9 +1,13 @@
 [application]
 
+name = "dioxus-starter"
+
+default_platform = "desktop"
+
 [web.app]
 
 # HTML title tag content
-title = "yemen-server-licensor"
+title = "dioxus-starter"
 
 # include `assets` in web platform
 [web.resource]
@@ -23,22 +27,33 @@ script = []
 asset_dir = "assets"
 
 [bundle]
-copyright = "Copyright 2025 Safwan.pro"
-icon = [ # Files copied from a Tauri project
+# Bundle identifier
+identifier = "pro.safwan.dioxus_starter"
+
+# Bundle publisher
+publisher = "Safwan Abdulghani"
+
+# Bundle copyright
+copyright = "Copyright (c) Safwan.pro 2025. All rights reserved."
+
+# Bundle short description
+short_description = "Safwan.pro"
+
+# Bundle icon
+icon = [
   "icons/32x32.png",
   "icons/128x128.png",
   "icons/128x128@2x.png",
   "icons/icon.icns",
   "icons/icon.ico"
 ]
-identifier = "pro.safwan.yemen_server"
-publisher = "Safwan Abdulghani"
+
+# Bundle resources
+# resources = ["assets/*"]
 
 [bundle.windows]
-tsp = false
+tsp = true
 icon_path = "assets/favicon.ico"
 allow_downgrades = true
-binary_name = "YS-Licensor" 
-
-[bundle.windows.webview_install_mode.EmbedBootstrapper]
-silent = true
+binary_name = "Dioxus-Starter"
+webview_install_mode = { OfflineInstaller = { silent = false } }

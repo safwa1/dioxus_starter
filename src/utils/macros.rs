@@ -10,24 +10,23 @@ macro_rules! cn {
                 total_len += $class.len();
             }
         )*
-        
+
         // Add space for spaces between classes
         total_len += if count > 0 { count - 1 } else { 0 };
-        
+
         let mut result = String::with_capacity(total_len);
         let mut first = true;
-        
+
         $(
             if !$class.is_empty() {
                 if !first {
                     result.push(' ');
                 }
                 first = false;
-                //println!("{first}");
                 result.push_str($class);
             }
         )*
-        
+
         result
     }};
 }
@@ -36,9 +35,9 @@ macro_rules! cn {
 macro_rules! merge_styles {
     ($($style:expr),*) => {{
         use std::collections::HashMap;
-        
+
         let mut result = HashMap::new();
-        
+
         $(
             if let Some(style_str) = $style {
                 for pair in style_str.split(';') {
@@ -51,7 +50,7 @@ macro_rules! merge_styles {
                 }
             }
         )*
-        
+
         if result.is_empty() {
             None
         } else {

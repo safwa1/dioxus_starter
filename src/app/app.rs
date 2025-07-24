@@ -8,8 +8,8 @@ use crate::utils::appname_utils::AppName;
 use dioxus::prelude::*;
 use dioxus_desktop::wry::dpi::PhysicalPosition;
 use dioxus_desktop::{use_window, DesktopContext, DesktopService};
-use tokio::time::sleep;
 use std::rc::Rc;
+use tokio::time::sleep;
 
 #[component]
 pub fn App() -> Element {
@@ -25,7 +25,6 @@ pub fn App() -> Element {
     let mut is_loading = use_signal(|| true);
 
     use_effect(move || {
-        
         let current_theme = app_state().theme();
         app_state().apply_theme(current_theme);
 
@@ -39,7 +38,6 @@ pub fn App() -> Element {
         });
     });
 
-
     rsx! {
         document::Stylesheet { href: asset!("/assets/style/app.css")}
         document::Stylesheet { href: asset!("/assets/style/components/window.css")}
@@ -49,7 +47,7 @@ pub fn App() -> Element {
         if !decorated_state {
             TitleBar { title: t.text_or("app_title", AppName::get_formatted_value()) }
         }
-        
+
         if is_loading() {
             Loader { decorated_state: decorated_state }
         } else {
